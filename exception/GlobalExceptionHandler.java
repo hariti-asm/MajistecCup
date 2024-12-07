@@ -29,7 +29,6 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
 
-        log.error("Validation error: {}", errors);
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ApiResponseDTO.error("Validation failed", errors, HttpStatus.BAD_REQUEST.value()));
@@ -38,7 +37,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ApiResponseDTO<Void>> handleEntityNotFoundException(
             EntityNotFoundException ex) {
-        log.error("Entity not found: {}", ex.getMessage());
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(ApiResponseDTO.error(ex.getMessage(), HttpStatus.NOT_FOUND.value()));
@@ -57,7 +55,6 @@ public class GlobalExceptionHandler {
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
 
-        log.error("IllegalStateException: {}", message);
         return ResponseEntity
                 .status(status)
                 .body(ApiResponseDTO.error(message, status.value()));
@@ -66,7 +63,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ApiResponseDTO<Void>> handleIllegalArgumentException(
             IllegalArgumentException ex) {
-        log.error("IllegalArgumentException: {}", ex.getMessage());
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ApiResponseDTO.error(ex.getMessage(), HttpStatus.BAD_REQUEST.value()));
@@ -74,7 +70,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponseDTO<Void>> handleGenericException(Exception ex) {
-        log.error("Unexpected error occurred", ex);
         String message = ex.getMessage() != null ? ex.getMessage() : "An unexpected error occurred";
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)

@@ -1,17 +1,20 @@
 package ma.hariti.asmaa.wrm.majesticcup.dto;
 
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ApiResponseDTO<T> {
     private final boolean success;
     private final T data;
     private final String error;
     private final int status;
+
+    private ApiResponseDTO(boolean success, T data, String error, int status) {
+        this.success = success;
+        this.data = data;
+        this.error = error;
+        this.status = status;
+    }
 
     public static <T> ApiResponseDTO<T> success(T data, int totalElements) {
         return new ApiResponseDTO<>(true, data, null, totalElements);
