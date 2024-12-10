@@ -2,9 +2,6 @@ package ma.hariti.asmaa.wrm.majesticcup.dto;
 
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 @Data
 public class CompetitionDTO {
     private String id;

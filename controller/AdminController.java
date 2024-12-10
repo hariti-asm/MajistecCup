@@ -20,33 +20,23 @@ public class AdminController {
         this.competitionService = competitionService;
     }
 
-    @PostMapping("/competitions")
+    @PostMapping(value = "/competitions", produces = "application/json")
     public ResponseEntity<ApiResponseDTO<CompetitionDTO>> createCompetition(@RequestBody CompetitionDTO competitionDTO) {
-        CompetitionDTO savedCompetition = competitionService.createCompetition(competitionDTO);
-        return ResponseEntity.ok(ApiResponseDTO.success(savedCompetition));
+        CompetitionDTO createdCompetition = competitionService.createCompetition(competitionDTO);
+        ApiResponseDTO<CompetitionDTO> response = ApiResponseDTO.success(createdCompetition);
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/competitions")
+
+    @GetMapping(value = "/competitions", produces = "application/json")
     public ResponseEntity<ApiResponseDTO<List<CompetitionDTO>>> getAllCompetitions() {
         List<CompetitionDTO> competitions = competitionService.getAllCompetitions();
-        return ResponseEntity.ok(ApiResponseDTO.success(competitions));
+        return ResponseEntity.ok(ApiResponseDTO.<List<CompetitionDTO>>success(competitions));
     }
-
-    @GetMapping("/competitions/{id}")
-    public ResponseEntity<ApiResponseDTO<CompetitionDTO>> getCompetitionById(@PathVariable String id) {
-        CompetitionDTO competitionDTO = competitionService.getCompetitionById(id);
-        return ResponseEntity.ok(ApiResponseDTO.success(competitionDTO));
-    }
-
-//    @PutMapping("/competitions/{id}")
-//    public ResponseEntity<ApiResponseDTO<CompetitionDTO>> updateCompetition(@PathVariable String id, @RequestBody CompetitionDTO competitionDTO) {
-//        CompetitionDTO updatedCompetition = competitionService.updateCompetition(id, competitionDTO);
-//        return ResponseEntity.ok(ApiResponseDTO.success(updatedCompetition));
-//    }
 
     @DeleteMapping("/competitions/{id}")
     public ResponseEntity<ApiResponseDTO<Void>> deleteCompetition(@PathVariable String id) {
         competitionService.deleteCompetition(id);
-        return ResponseEntity.ok(ApiResponseDTO.success(null));
+        return ResponseEntity.ok(ApiResponseDTO.<Void>success(null));
     }
 }
