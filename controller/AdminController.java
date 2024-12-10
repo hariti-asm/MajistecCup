@@ -39,4 +39,12 @@ public class AdminController {
         competitionService.deleteCompetition(id);
         return ResponseEntity.ok(ApiResponseDTO.<Void>success(null));
     }
+    @PutMapping(value = "/competitions/{id}", produces = "application/json")
+    public ResponseEntity<ApiResponseDTO<CompetitionDTO>> updateCompetition(
+            @PathVariable String id,
+            @RequestBody CompetitionDTO competitionDTO
+    ) {
+        CompetitionDTO updatedCompetition = competitionService.updateCompetition(id, competitionDTO);
+        return ResponseEntity.ok(ApiResponseDTO.success(updatedCompetition));
+    }
 }
