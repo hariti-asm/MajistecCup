@@ -22,4 +22,8 @@ public class Round {
 
     @JsonProperty("matchIds")
     private List<String> matchIds;
+    @JsonProperty("roundNumber")
+    private String roundNumber;
+
+
 }
