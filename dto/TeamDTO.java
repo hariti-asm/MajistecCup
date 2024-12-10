@@ -1,19 +1,18 @@
 package ma.hariti.asmaa.wrm.majesticcup.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.List;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TeamDTO {
     private String id;
     private String name;
     private String city;
+    private List<PlayerDTO> players;
 
-    public TeamDTO(String id, String name, String city) {
-        this.id = id;
-        this.name = name;
-        this.city = city;
-    }
 }

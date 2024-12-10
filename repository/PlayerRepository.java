@@ -18,4 +18,11 @@ public interface PlayerRepository extends MongoRepository<Player, String> {
 
     @Query(value = "{}", sort = "{ totalCards: -1 }")
     List<Player> findTopByTotalCardsOrderByTotalCardsDesc(Pageable pageable);
+
+    @Query("{'team.$id': ?0}")
+    List<Player> findByTeam(String teamId);
+
+    List<Player> findByTeamId(String teamId);
+
+    void deleteByTeamId(String teamId);
 }

@@ -5,11 +5,10 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.Set;
+import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,7 +26,8 @@ public class Team {
     @Field("city")
     private String city;
     @JsonProperty("players")
-    @DBRef
-    private Set<Player> players;
+    @Field("players")
+    private List<Player> players;
+
 }
 

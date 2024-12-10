@@ -1,39 +1,53 @@
 package ma.hariti.asmaa.wrm.majesticcup.entity;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.management.ConstructorParameters;
-
+@Document(collection = "players")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "players")
 public class Player {
-    @MongoId
-    @JsonProperty("_id")
+    @Id
     private String id;
 
-    @JsonProperty("name")
+    @Field("name")
     private String name;
 
-    @JsonProperty("surname")
+    @Field("surname")
     private String surname;
 
-    @JsonProperty("position")
+    @Field("position")
     private String position;
-    @JsonProperty
+
+    @Field("assists")
     private int assists;
-    @JsonProperty
+
+    @Field("total_cards")
     private int totalCards;
-    @JsonProperty("number")
+
+    @Field("number")
     private int number;
-@JsonProperty
-private int goals;
-    @DBRef
+
+    @Field("goals")
+    private int goals;
+
+    @Field("team_id")
+    private String teamId;
+
+    @DBRef(lazy = true)
+    @Field("team")
     private Team team;
+
+    public void setTeam(Team team) {
+        this.team = team;
+        if (team != null) {
+            this.teamId = team.getId();
+        }
+    }
 }
