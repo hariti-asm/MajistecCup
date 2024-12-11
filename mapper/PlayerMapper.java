@@ -5,6 +5,8 @@ import ma.hariti.asmaa.wrm.majesticcup.entity.Player;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface PlayerMapper {
 
@@ -13,4 +15,6 @@ public interface PlayerMapper {
 
     @Mapping(target = "teamId", source = "team.id")
     PlayerDTO playerToPlayerDTO(Player player);
+    List<PlayerDTO> toDTOList(List<Player> players);
+
 }
