@@ -13,5 +13,5 @@ public class RoundDTO {
     private String id;
     private String competitionId;
     private int roundNumber;
-    private List<String> matchIds;
+    private List<MatchDTO> matches;
 }

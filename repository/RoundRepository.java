@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface RoundRepository extends MongoRepository <Round, String>{
     List<Round> findByCompetitionId(String competitionId);
 
-    Optional<Round> findByMatchIdsContaining(String matchId);
 }

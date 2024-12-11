@@ -20,8 +20,8 @@ public class Round {
     @JsonProperty("competitionId")
     private String competitionId;
 
-    @JsonProperty("matchIds")
-    private List<String> matchIds;
+    @JsonProperty("matches")
+    private List<Match> matches;
 
     @JsonProperty("roundNumber")
     private int roundNumber;
