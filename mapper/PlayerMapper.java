@@ -7,9 +7,10 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface PlayerMapper {
+
     @Mapping(target = "team", ignore = true)
     Player playerDTOToPlayer(PlayerDTO playerDTO);
 
-    @Mapping(target = "teamId", source = "teamId")
+    @Mapping(target = "teamId", source = "team.id")
     PlayerDTO playerToPlayerDTO(Player player);
 }

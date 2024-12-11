@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
@@ -38,7 +37,10 @@ public class Player {
 
     @Field("team_id")
     private String teamId;
-
+    @Field("yellowCards")
+    private int yellowCards;
+    @Field("redCards")
+    private int redCards;
     @DBRef(lazy = true)
     @Field("team")
     private Team team;
