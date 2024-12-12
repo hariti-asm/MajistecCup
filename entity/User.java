@@ -1,5 +1,7 @@
 package ma.hariti.asmaa.wrm.majesticcup.entity;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +17,10 @@ public class User {
     private String id;
     private String username;
     private String password;
-    private String roles;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+    public enum UserRole {
+        USER, ADMIN, OPERATOR
+    }
 }
 

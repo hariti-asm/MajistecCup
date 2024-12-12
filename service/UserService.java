@@ -10,24 +10,34 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
 
-    @Autowired
-    private JWTService jwtService;
+    private final JWTService jwtService;
 
-    @Autowired
-    AuthenticationManager authManager;
+    private final AuthenticationManager authManager;
 
-    @Autowired
-    private UserRepository repo;
+    private final UserRepository userRepository;
 
-
+public UserService(JWTService jwtService, AuthenticationManager authManager, UserRepository userRepository) {
+    this.jwtService = jwtService;
+    this.authManager = authManager;
+    this.userRepository = userRepository;
+}
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
     public User register(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        repo.save(user);
+        userRepository.save(user);
         return user;
     }
 
